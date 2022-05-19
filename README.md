@@ -1,4 +1,4 @@
-# Oras-Bolas
+# Ora-Bolas
 Projeto de Introdução a física clássica - 2°semestre - FEI - 2022
 
 Esse projeto foi desenvolvido pelo alunos Arthur Sousa, Fernando, Gustavo e Flávio Eugênio. Estudantes do curso de Ciências da Coputação no Centro Universitário FEI.
