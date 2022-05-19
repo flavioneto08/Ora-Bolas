@@ -2,23 +2,23 @@
 #include <stdlib.h>
 #include <math.h>
 
-int spaceEqX(float finalSpaceX, float initialSpaceX, float initialVelocity, float time) {
+float spaceEqX(float finalSpaceX, float initialSpaceX, float initialVelocity, float time) {
     float accelX;
     accelX = ((finalSpaceX * 2) - initialSpaceX - (initialVelocity * time)) / (time * time);
     return accelX;
 }
 
-int spaceEqY(float finalSpaceY, float initialSpaceY, float initialVelocity, float time, float accelY) {
+float spaceEqY(float finalSpaceY, float initialSpaceY, float initialVelocity, float time, float accelY) {
     accelY = ((finalSpaceY * 2) - initialSpaceY - (initialVelocity * time)) / (time * time);
     return accelY;
 }
 
-int velocityEqX(float finalVelocityX, float initialVelocity, float time, float accelX) {
+float velocityEqX(float finalVelocityX, float initialVelocity, float time, float accelX) {
     finalVelocityX = initialVelocity + (accelX * time);
     return finalVelocityX;
 }
 
-int velocityEqY(float finalVelocityY, float initialVelocity, float time, float accelY) {
+float velocityEqY(float finalVelocityY, float initialVelocity, float time, float accelY) {
     finalVelocityY = initialVelocity + (accelY * time);
     return finalVelocityY;
 }
