@@ -4,7 +4,7 @@
 
 int main() {
 
-    int index = 0;
+    int i = 0;
     float time[1001];
     float ballXPosition[1001];
     float ballYPosition[1001];
@@ -62,18 +62,23 @@ int main() {
         initialSpaceX[i + 1] = initialSpaceX[i] + (cos[i] * 0.04); // Calculates the position of the robot in the next time step for the X axis
         initialSpaceY[i + 1] = initialSpaceY[i] + (sin[i] * 0.05); // Calculates the position of the robot in the next time step for the Y axis
 
-        /*/    Function to append acceleration for every second into an array so we can graph latter
-        do {
-            float accelRobotX[1001], accelRobotY[1001];
-            accelRobotX[i] = (((initialSpaceX[i] * 2) - initialSpaceX[0] - (initialVelocity * valuesTime[i])) / (valuesTime[i] * valuesTime[i]));
-            printf("Aceleracao do robo no eixo X: %.3fm/s^2\n", accelRobotX[i]);
+        /* Calculations for acceleration and velocity
+        float velocityRobotX[1001], velocityRobotY[1001];
+        velocityRobotX[i] = velocityRobotT[i] * cos[i];
+        printf("Velocidade durante a trajetoria no eixo X: %.3f\n", velocityRobotX[i]);
+        velocityRobotY[i] = velocityRobotT[i] * sin[i];
+        printf("Velocidade durante a trajetoria no eixo Y: %.3f\n", velocityRobotY[i]);
 
-            accelRobotY[i] = (((initialSpaceY[i] * 2) - initialSpaceY[0] - (initialVelocity * valuesTime[i])) / (valuesTime[i] * valuesTime[i]));
-            printf("Aceleracao do robo no eixo Y: %.3fm/s^2\n", accelRobotY[i]);
+        float accelRobotX[1001], accelRobotY[1001], accelRobotTX[1001], accelRobotTY[1001];
+        accelRobotTX[i] = (velocityRobotX[i] + velocityRobotX[i + 1])/(valuesTime[i + 1] - valuesTime[i]);
+        accelRobotX[i] = accelRobotTX[i] * cos[i];
+        printf("Aceleração durante a trajetoria no eixo X: %.3f\n", accelRobotX[i]);
 
-        } while (initialSpaceX[i] < valuesBallX[i] - 0.15 && initialSpaceY[i] > valuesBallX[i] + 0.15 && initialSpaceY[i] < valuesBallY[i] - 0.15 && initialSpaceY[i] > valuesBallY[i] + 0.15);
-        /*/
-
+        accelRobotTY[i] = (velocityRobotY[i] + velocityRobotY[i + 1])/(valuesTime[i + 1] - valuesTime[i]);
+        accelRobotY[i] = accelRobotTY[i] * sin[i];
+        printf("Aceleração durante a trajetoria no eixo Y: %.3f\n", accelRobotY[i]);
+        */
+        
         // Verifies if the distance between the robot and the ball is less than 0.15 which is the radius of interception
         if (initialSpaceX[i] >= valuesBallX[i] - 0.15 && initialSpaceY[i] <= valuesBallX[i] + 0.15 && initialSpaceY[i] >= valuesBallY[i] - 0.15 && initialSpaceY[i] <= valuesBallY[i] + 0.15) {
             printf("O robo conseguiu alcancar a bola!\n");
@@ -82,12 +87,15 @@ int main() {
             printf("Posicao da bola no eixo X: %.3fm     Posicao da bola no eixo Y: %.3fm\n", valuesBallX[i], valuesBallY[i]);
             printf("Tempo gasto ate o robo encontrar a bola: %.2fs\n", valuesTime[i]);
 
-            // double acellX = spaceEqX(initialSpaceX[i], initialSpaceX[0], initialVelocity, valuesTime[i]);
-            float accelRobotX = (((initialSpaceX[i] * 2) - initialSpaceX[0] - (initialVelocity * valuesTime[i])) / (valuesTime[i] * valuesTime[i]));
-            printf("Aceleracao do robo no eixo X: %.3fm/s^2\n", accelRobotX);
+            
+        else
+        {
 
-            float accelRobotY = (((initialSpaceY[i] * 2) - initialSpaceY[0] - (initialVelocity * valuesTime[i])) / (valuesTime[i] * valuesTime[i]));
-            printf("Aceleracao do robo no eixo Y: %.3fm/s^2\n", accelRobotY);
+            printf("X: %.3f    Y: %.3f     Tempo: %.3f     Velocidade: %.3f\n", initialSpaceX[i], initialSpaceY[i], valuesTime[i], velocityRobotT[i]);
+            printf("BolaX: %.3f     BolaY: %.3f\n\n", valuesBallX[i], valuesBallY[i]);
+            // printf("Aceleracao do robo no eixo X: %.3fm/s^2\n", accelRobotX[i]);
+            // printf("Aceleracao do robo no eixo Y: %.3fm/s^2\n\n", accelRobotY[i]);
+        }
 
             break;
         }
